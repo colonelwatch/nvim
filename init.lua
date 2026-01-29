@@ -599,7 +599,7 @@ require('lazy').setup({
         -- vim.wo.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
 
         -- enables treesitter based indentation
-        vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+        -- vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
       end
 
       local available_parsers = require('nvim-treesitter').get_available()
