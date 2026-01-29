@@ -633,6 +633,26 @@ require('lazy').setup({
       require('nvim-treesitter').install(parsers)
     end,
   },
+
+  { -- manage files outside of Vim's buffers system
+    "mikavilpas/yazi.nvim",
+    version = "*", -- use the latest stable version
+    event = "VeryLazy",
+    dependencies = {
+      { "nvim-lua/plenary.nvim", lazy = true },
+    },
+    opts = {
+      open_for_directories = true,
+      keymaps = {
+        show_help = "<f1>",
+      },
+    },
+    init = function()
+      -- mark netrw as loaded so it's not loaded at all.
+      vim.g.loaded_netrwPlugin = 1
+      vim.g.loaded_netrw = 1
+    end,
+  },
 })
 
 -- The line beneath this is called `modeline`. See `:help modeline`
