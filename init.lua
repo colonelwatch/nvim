@@ -409,6 +409,7 @@ require('lazy').setup({
 
       -- Enable the following language servers
       local servers = {
+        clangd = {},
         pyright = {
           settings = {
             python = {
