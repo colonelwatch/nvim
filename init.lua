@@ -545,6 +545,7 @@ require('lazy').setup({
     priority = 1000, -- Make sure to load this before all the other start plugins.
     config = function()
       require('NeoSolarized').setup {
+        style = 'light',
         transparent = false,
         on_highlights = function(highlights, colors)
           highlights.DiagnosticUnderlineInfo = { sp = colors.blue, style = "undercurl" }
