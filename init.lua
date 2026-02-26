@@ -425,7 +425,17 @@ require('lazy').setup({
       }
 
       -- Ensure the servers and tools above are installed
-      local ensure_installed = vim.tbl_keys(servers or {})
+      os_name = io.popen('uname -s'):read()
+      arch_name = io.popen('uname -m'):read()
+      local ensure_installed = vim.tbl_filter(
+        function(tool_name)
+          if tool_name == 'clangd' and os_name == 'Linux' and arch_name ~= 'x86_64' then
+            return false
+          end
+          return true
+        end,
+        vim.tbl_keys(servers or {})
+      )
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
       require('mason-lspconfig').setup {
