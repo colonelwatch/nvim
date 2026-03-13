@@ -422,6 +422,7 @@ require('lazy').setup({
         ruff = {},
         ltex_plus = {},
         mdformat = {},
+        bashls = {},
       }
 
       for server_name, server in pairs(servers) do
