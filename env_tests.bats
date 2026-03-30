@@ -17,7 +17,9 @@ load "/usr/lib/bats/bats-file/load"
 }
 
 @test "fd exists" {
-	command -v fd
+	if ! command -v fd; then
+		command -v fdfind
+	fi
 }
 
 @test "npm exists" {
