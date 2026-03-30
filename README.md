@@ -1,5 +1,11 @@
 # nvim
 
+## Setup
+
+This neovim config depends on certain commands being available. The `env_tests.bats` file contains BATS tests that check whether each one is available or not.
+
+## Notice
+
 This neovim config is based on [kickstart.vim](https://github.com/nvim-lua/kickstart.nvim). Its notice is included below.
 
 > MIT License
