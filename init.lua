@@ -234,6 +234,7 @@ require('lazy').setup({
       {
         'mason-org/mason.nvim',
         opts = {
+          PATH = "append",
           registries = {
             "lua:mason-registry-override",
             "github:mason-org/mason-registry",
