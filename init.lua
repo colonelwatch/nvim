@@ -160,6 +160,7 @@ require('lazy').setup({
         { '<leader>s', group = '[S]earch' },
         { '<leader>t', group = '[T]oggle' },
         { '<leader>h', group = 'Git [H]unk', mode = { 'n', 'v' } },
+        { '<leader>n', group = '[N]eogen' },
       },
     },
   },
@@ -641,6 +642,18 @@ require('lazy').setup({
       local parsers = { 'bash', 'c', 'diff', 'html', 'lua', 'luadoc', 'markdown', 'markdown_inline', 'query', 'vim', 'vimdoc' }
       require('nvim-treesitter').install(parsers)
     end,
+  },
+
+  { -- automatically generate documentation with treesitter-based Neogen
+    'danymat/neogen',
+    opts = {},
+    keys = {
+      { "<leader>na", "<cmd>Neogen<cr>", desc = '[N]eogen [A]utomatic' },
+      { "<leader>nf", "<cmd>Neogen func<cr>", desc = '[N]eogen [F]unction' },
+      { "<leader>nc", "<cmd>Neogen class<cr>", desc = '[N]eogen [C]lass' },
+      { "<leader>nt", "<cmd>Neogen type<cr>", desc = '[N]eogen [T]ype' },
+      { "<leader>nm", "<cmd>Neogen file<cr>", desc = '[N]eogen [M]odule' },
+    },
   },
 
   { -- manage files outside of Vim's buffers system
