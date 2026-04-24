@@ -142,7 +142,16 @@ require("lazy").setup({
     },
   },
 
-  { "tpope/vim-fugitive" },
+  {
+    "tpope/vim-fugitive",
+    lazy = false,
+    keys = {
+      { "<leader>gc", "<cmd>Git commit<cr>",        desc = "[G]it [C]ommit" },
+      { "<leader>gs", "<cmd>Git status<cr>",        desc = "[G]it [S]tatus" },
+      { "<leader>gd", "<cmd>Git diff<cr>",          desc = "[G]it [d]iff" },
+      { "<leader>gD", "<cmd>Git diff --staged<cr>", desc = "Git [D]iff (staged)" },
+    },
+  },
 
   {                     -- Useful plugin to show you pending keybinds.
     "folke/which-key.nvim",
@@ -159,6 +168,7 @@ require("lazy").setup({
       spec = {
         { "<leader>s", group = "[S]earch" },
         { "<leader>t", group = "[T]oggle" },
+        { "<leader>g", group = "[G]it" },
         { "<leader>h", group = "Git [H]unk", mode = { "n", "v" } },
         { "<leader>n", group = "[N]eogen" },
       },
