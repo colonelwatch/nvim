@@ -202,7 +202,9 @@ require("lazy").setup({
       { "<leader>gc", "<cmd>Git commit<cr>",        desc = "[G]it [C]ommit" },
       { "<leader>gs", "<cmd>Git status<cr>",        desc = "[G]it [S]tatus" },
       { "<leader>gd", "<cmd>Git diff<cr>",          desc = "[G]it [d]iff" },
-      { "<leader>gD", "<cmd>Git diff --staged<cr>", desc = "Git [D]iff (staged)" },
+      { "<leader>gD", "<cmd>Git diff --staged<cr>", desc = "[G]it [D]iff (staged)" },
+      { "<leader>gp", "<cmd>Git push<cr>",          desc = "[G]it [p]ush" },
+      { "<leader>gP", "<cmd>Git pull<cr>",          desc = "[G]it [P]ull" },
     },
   },
 
