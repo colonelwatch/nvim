@@ -786,11 +786,11 @@ require("lazy").setup({
     "danymat/neogen",
     opts = {},
     keys = {
-      { "<leader>na", "<cmd>Neogen<cr>",       desc = "[N]eogen [A]utomatic" },
-      { "<leader>nf", "<cmd>Neogen func<cr>",  desc = "[N]eogen [F]unction" },
-      { "<leader>nc", "<cmd>Neogen class<cr>", desc = "[N]eogen [C]lass" },
-      { "<leader>nt", "<cmd>Neogen type<cr>",  desc = "[N]eogen [T]ype" },
-      { "<leader>nm", "<cmd>Neogen file<cr>",  desc = "[N]eogen [M]odule" },
+      { "<leader>na", function() require("neogen").generate() end,                   desc = "[N]eogen [A]utomatic" },
+      { "<leader>nf", function() require("neogen").generate({ type = "func" }) end,  desc = "[N]eogen [F]unction" },
+      { "<leader>nc", function() require("neogen").generate({ type = "class" }) end, desc = "[N]eogen [C]lass" },
+      { "<leader>nt", function() require("neogen").generate({ type = "type" }) end,  desc = "[N]eogen [T]ype" },
+      { "<leader>nm", function() require("neogen").generate({ type = "file" }) end,  desc = "[N]eogen [M]odule" },
     },
   },
 
