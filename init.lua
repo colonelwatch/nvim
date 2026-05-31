@@ -436,21 +436,6 @@ require("lazy").setup({
         end,
       })
 
-      vim.lsp.config("ltex_plus", {
-        settings = {
-          ltex = {
-            diagnosticSeverity = {
-              ["MORFOLOGIK_RULE_EN_US"] = "error",
-              ["default"] = "information",
-            },
-            additionalRules = {
-              -- n-grams model can also be tested with "I flu to Los Angeles."
-              languageModel = "~/.local/share/ngrams",
-            },
-          },
-        },
-      })
-
       -- Diagnostic Config
       vim.diagnostic.config({
         severity_sort = true,
@@ -499,7 +484,20 @@ require("lazy").setup({
           },
         },
         ruff = {},
-        ltex_plus = {},
+        ltex_plus = {
+          settings = {
+            ltex = {
+              diagnosticSeverity = {
+                ["MORFOLOGIK_RULE_EN_US"] = "error",
+                ["default"] = "information",
+              },
+              additionalRules = {
+                -- n-grams model can also be tested with "I flu to Los Angeles."
+                languageModel = "~/.local/share/ngrams",
+              },
+            },
+          },
+        },
         mdformat = {},
         bashls = {},
         -- TODO: clean up these lines copy-pasted from nvim-lspconfig for Lua
