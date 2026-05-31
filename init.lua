@@ -68,6 +68,9 @@ vim.o.winborder = "single"
 -- Set the rulers
 vim.o.colorcolumn = "81,89"
 
+-- Enable project-specific configuration
+vim.o.exrc = true
+
 -- [[ Basic Keymaps ]]
 
 -- Clear highlights on search when pressing <Esc> in normal mode
@@ -474,15 +477,7 @@ require("lazy").setup({
       -- Enable the following language servers
       local servers = {
         clangd = {},
-        pyright = {
-          settings = {
-            python = {
-              analysis = {
-                stubPath = vim.fn.stdpath("data") .. "/lazy/python-type-stubs",
-              },
-            },
-          },
-        },
+        pyrefly = { typeCheckingMode = "default" },
         ruff = {},
         ltex_plus = {
           settings = {
@@ -551,6 +546,21 @@ require("lazy").setup({
         },
       }
 
+      local optional_servers = {
+        -- can be swapped with pyrefly using these commands in `.nvim.lua`
+        -- nvim.lsp.enable("pyrefly", false)
+        -- nvim.lsp.enable("pyright", true)
+        pyright = {
+          settings = {
+            python = {
+              analysis = {
+                stubPath = vim.fn.stdpath("data") .. "/lazy/python-type-stubs",
+              },
+            },
+          },
+        },
+      }
+
       for server_name, server in pairs(servers) do
         -- This handles overriding only values explicitly passed
         -- by the server configuration above. Useful when disabling
@@ -562,12 +572,15 @@ require("lazy").setup({
       -- Ensure the servers and tools above are installed
       os_name = io.popen("uname -s"):read()
       arch_name = io.popen("uname -m"):read()
-      local ensure_installed = vim.tbl_filter(function(tool_name)
-        if tool_name == "clangd" and os_name == "Linux" and arch_name ~= "x86_64" then
-          return false
-        end
-        return true
-      end, vim.tbl_keys(servers or {}))
+      local ensure_installed = vim.tbl_filter(
+        function(tool_name)
+          if tool_name == "clangd" and os_name == "Linux" and arch_name ~= "x86_64" then
+            return false
+          end
+          return true
+        end,
+        vim.tbl_keys(vim.tbl_extend("error", servers or {}, optional_servers or {}))
+      )
       require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
 
       vim.lsp.enable(vim.tbl_keys(servers))
