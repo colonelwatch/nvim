@@ -570,8 +570,8 @@ require("lazy").setup({
       end
 
       -- Ensure the servers and tools above are installed
-      os_name = io.popen("uname -s"):read()
-      arch_name = io.popen("uname -m"):read()
+      local os_name = io.popen("uname -s"):read()
+      local arch_name = io.popen("uname -m"):read()
       local ensure_installed = vim.tbl_filter(
         function(tool_name)
           if tool_name == "clangd" and os_name == "Linux" and arch_name ~= "x86_64" then
