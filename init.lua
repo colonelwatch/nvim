@@ -561,6 +561,8 @@ require("lazy").setup({
         },
       }
 
+      local extra_tools = { "shellcheck" }
+
       for server_name, server in pairs(servers) do
         -- This handles overriding only values explicitly passed
         -- by the server configuration above. Useful when disabling
@@ -579,7 +581,16 @@ require("lazy").setup({
           end
           return true
         end,
-        vim.tbl_keys(vim.tbl_extend("error", servers or {}, optional_servers or {}))
+        vim.list_extend(
+          vim.tbl_keys(
+            vim.tbl_extend(
+              "error",
+              servers or {},
+              optional_servers or {}
+            )
+          ),
+          extra_tools
+        )
       )
       require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
 
