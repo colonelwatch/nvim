@@ -311,8 +311,29 @@ require("lazy").setup({
           },
         },
       },
-      "mason-org/mason-lspconfig.nvim",
-      "WhoIsSethDaniel/mason-tool-installer.nvim",
+      { -- Eliminate nodejs and npm dependency, keep pip
+        "Senal-D-A-Gunaratna/swapson.nvim",
+        commit = "86a6887d9a9adb749ea77b840ee286b4c98f6cd8",
+        dependencies = { "mason-org/mason.nvim" },
+        opts = {
+          npm = {
+            enabled = true,
+            tool = "bun",
+          },
+          pip = { enabled = false },
+        },
+      },
+      {
+        "mason-org/mason-lspconfig.nvim",
+        dependencies = { "mason-org/mason.nvim" },
+      },
+      {
+        "WhoIsSethDaniel/mason-tool-installer.nvim",
+        dependencies = {
+          "mason-org/mason.nvim",
+          "mason-org/mason-lspconfig.nvim",
+        },
+      },
 
       -- Useful status updates for LSP.
       { "j-hui/fidget.nvim", opts = {} },

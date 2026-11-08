@@ -22,8 +22,8 @@ load "/usr/lib/bats/bats-file/load"
 	fi
 }
 
-@test "npm exists" {
-	command -v npm
+@test "bun exists" {
+	command -v bun
 }
 
 @test "LTeX n-grams model installed" {
